@@ -25,7 +25,7 @@ body{
     align-content: center;
     height: 100vh;
     width: 100%;
-    border: .1em dashed blue;
+    /*border: .1em dashed blue;*/
 }
 
 .map-container{
@@ -34,7 +34,7 @@ body{
     width: fit-content;
     height: fit-content;
     align-items: center;
-    border: .1em dashed gray;
+    /*border: .1em dashed gray;*/
     justify-content: space-evenly;
 }
 
