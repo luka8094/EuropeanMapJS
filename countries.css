@@ -1,0 +1,147 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+p{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: .9em;
+}
+
+path{
+    /*fill: green;*/
+    transition: fill 2s;
+}
+
+path:hover{
+    fill: lightblue;
+}
+
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    height: 100vh;
+    width: 100%;
+    border: .1em dashed blue;
+}
+
+.map-container{
+    display: flex;
+    flex-direction: row;
+    width: fit-content;
+    height: fit-content;
+    align-items: center;
+    border: .1em dashed gray;
+    justify-content: space-evenly;
+}
+
+.map{
+    display: flex;
+    height: fit-content;
+}
+
+.map-picture{
+    display: block;
+    border: .1em solid lightblue;
+}
+
+.country-info-box{
+    display: flex;
+    width: 250px;
+    min-height: 200px;
+    height: fit-content;
+    border: 0.1em solid lightblue;
+    flex-direction: column;
+    padding: 20px;
+    background-color: white;
+    margin-bottom: auto;
+    overflow-wrap: anywhere;
+    justify-content: center;
+    transition: height 2s, color 1s ease-in-out;
+}
+
+.country-info-box-height-fit{
+    height: fit-content;
+}
+
+#layer2{
+    display: flex;
+    height: fit-content;
+    width: fit-content;
+}
+
+.country-flag-img{
+    opacity: 0;
+    height: 27px;    
+    width: 36px;
+    transition: opacity 2s ease-in;
+}
+
+.flag-visible{
+    opacity: 1.0;
+}
+
+#country-name{
+    padding-top: 10px;
+}
+
+@media screen and (max-width: 550px){
+
+    #infobox{
+        height: fit-content;
+        min-width: 300px;
+    }
+
+}
+
+@media screen and (max-width: 880px){
+
+    .map-picture{
+        transform: scale(0.89);
+    }
+
+    .map-container{
+        flex-direction: column;
+    }
+
+    #infobox{
+        min-width: fit-content;
+        height: 150px;
+    }
+
+}
+
+@media screen and (max-width: 990px){
+
+    .map-container{
+        width: 90%;
+        height: fit-content;
+    }
+
+}
+
+@media screen and (min-width: 1000px){
+
+    .map-container{
+        width: 80%;
+    }
+
+}
+
+@media screen and (min-width: 1200px){
+
+    .map-container{
+        width: 80%;
+    }
+
+}
+
+@media screen and (min-width: 1500px){
+
+    .map-container {
+        width: 50%;
+    }
+}
