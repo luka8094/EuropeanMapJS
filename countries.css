@@ -137,7 +137,7 @@ body{
 @media screen and (min-width: 1200px){
 
     .map-container{
-        width: 80%;
+        width: 70%;
     }
 
 }
@@ -145,6 +145,13 @@ body{
 @media screen and (min-width: 1500px){
 
     .map-container {
-        width: 50%;
+        width: 60%;
+    }
+}
+
+@media screen and (min-width: 1900px){
+
+    .map-container {
+        width: 70%;
     }
 }
