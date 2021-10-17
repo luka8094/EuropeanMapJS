@@ -141,13 +141,13 @@ function refreshInfobox(id){
     //Variable to construct a HTML element 
     //with the data found in the country object
     let countryInformation = 
-    `<img id="country-flag" class="country-flag-img" src=${country.flag}>
-    <p id="country-name">Country: ${country.name} </p>
-    <p id="country-un">UN member: ${country.UnMember}</p>
-    <p id="country-currency">Currency: ${getProperties(country.currencies)['name']}${getProperties(country.currencies)['symbol'] ? ","+ getProperties(country.currencies)['symbol'] : ""}</p>
-    <p id="country-capital">Capital: ${country.capital}</p>
-    <p id="country-language">Languages: ${getProperties(country.language)}</p>
-    <p id="country-borders">Borders: ${commaSeperator(country.borders) ? commaSeperator(country.borders) : "none"}</p>`
+   `<img id="country-flag" class="country-flag-img" src=${country.flag}>
+    <p id="country-name"><span id="info-attribute">Country:</span> ${country.name} </p>
+    <p id="country-un"><span id="info-attribute">UN member:</span> ${country.UnMember}</p>
+    <p id="country-currency"><span id="info-attribute">Currency:</span> ${getProperties(country.currencies)['name']}${getProperties(country.currencies)['symbol'] ? " "+ getProperties(country.currencies)['symbol'] : ""}</p>
+    <p id="country-capital"><span id="info-attribute">Capital:</span> ${country.capital}</p>
+    <p id="country-language"><span id="info-attribute">Languages:</span> ${getProperties(country.language)}</p>
+    <p id="country-borders"><span id="info-attribute">Borders:</span> ${commaSeperator(country.borders) ? commaSeperator(country.borders) : "none"}</p>`
 
     document.getElementById("infobox").innerHTML = countryInformation.toString()
 
