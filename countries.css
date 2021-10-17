@@ -91,6 +91,11 @@ body{
     padding-top: 10px;
 }
 
+#info-attribute{
+    font-size: 1em;
+    font-weight: bold;
+}
+
 @media screen and (max-width: 550px){
 
     #infobox{
