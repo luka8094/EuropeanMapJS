@@ -45,6 +45,8 @@ body{
 
 .map-picture{
     display: block;
+    width: 520px;
+    height: 525px;
     border: .1em solid lightblue;
 }
 
@@ -60,6 +62,7 @@ body{
     margin-bottom: auto;
     overflow-wrap: anywhere;
     justify-content: center;
+    /*TODO: make the country info box seemlessly scale based on content*/
     transition: height 2s, color 1s ease-in-out;
 }
 
