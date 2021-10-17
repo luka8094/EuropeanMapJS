@@ -35,10 +35,9 @@ function setupHandler(){
 //Call and run the handler
 setupHandler()
 
-//Function to run through each item in an array containing
 function handleSVGTarget(event){
 
-    //prevents the event of bubbling further
+    //prevents the event from bubbling further (upwards in the HTML structure)
     event.stopPropagation()
     event.preventDefault()
 
@@ -59,8 +58,8 @@ function handleSVGTarget(event){
             }
         }
 
-    //If the country data is already found and stored in the local cache  
-    //retrieve that data object, to the corresponding id, instead  
+    //If the country data is already found to be stored in the local cache  
+    //get that instead  
     if(localCountryData.findByInitials(_id+"")) return refreshInfobox(_id+"")
     else fetchSingleCountryData(_id,options)
     
@@ -73,17 +72,19 @@ function createCountry(_country,id){
     //create empty country object
     let country = {}
 
-    //the following defined properties that belong to the country object
-    country.id = id+""
+    //the following define and place properties that belong to the country object
+    country.id = id+"" 
     country.name = _country['name']['common']
     country.flag = _country['flag']
-    country.UnMember = unionMembership( _country['unMember'] )
+    //Checks if the the unMember value is "true/false" 
+    //returns a "Yes" if true
+    country.UnMember = _country['unMember'] ? "Yes" : "No"
     country.capital = _country['capital']
     country.language = _country['languages']
     country.borders = _country['borders']
     country.currencies = _country['currencies']
 
-    //Put the created object into the local cache
+    //Store (save) the created object into the local cache
     localCountryData.addCountry(country)
 
 }
@@ -97,8 +98,6 @@ function fetchSingleCountryData(id,options){
     //e.g: URL = "https://countries.plaul.dk/api/countries/dk" (if id = "dk")
     //e.g: URL = "https://countries.plaul.dk/api/countries/ru" (if id = "ru")
     //e.g: URL = "https://countries.plaul.dk/api/countries/pl" (if id = "pl")
-    //e.g: URL = "https://countries.plaul.dk/api/countries/it" (if id = "it")
-    //e.g: URL = "https://countries.plaul.dk/api/countries/gb" (if id = "gb")
     // etc. etc.
     fetch(URL+id,options)
     .then(response =>{
@@ -116,10 +115,8 @@ function fetchSingleCountryData(id,options){
             //corresponding to the id (initials) of the inquired country
             createCountry(response,id)
 
-            //Console.log print out for debugging purposes
-            //console.log(response)
-
             refreshInfobox(id)    
+
             }
         )
     .catch(
@@ -129,10 +126,10 @@ function fetchSingleCountryData(id,options){
 }
 
 //A small function to check and return a proper, corresponding value to that of the unMember property
-//found in country object
-function unionMembership(check){
-    return check ? "Yes" : "No" 
-}
+//found in country object instead of "true/false"
+//function unionMembership(check){
+//    return check ? "Yes" : "No" 
+//}
 
 function refreshInfobox(id){
 
@@ -203,9 +200,9 @@ function commaSeperator(array){
     return rearrangedString
 }
 
-//Cleaning function to filter potentially malicious user input/injection
-//credit to & based on a snippet by KEA lecturer
-function inputCleaner(string){
+//Cleaning function to clear potentially malicious user input/injection
+//Based on a snippet created by KEA lecturer
+/*function sanitizer(string){
         string = ""+string
         string = string.replace(/&/g, "&amp;")
         string = string.replace(/>/g, "&gt;")
@@ -214,5 +211,6 @@ function inputCleaner(string){
         string = string.replace(/'/g, "&#039;")
         string = string.replace(/-/g, "&#045;")
         string = string.replace(/\//g, "&#092;")
+        string = string.replace(/$/g, "&#36;")
         return string;
-}
+}*/
