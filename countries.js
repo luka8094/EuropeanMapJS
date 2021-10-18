@@ -259,4 +259,4 @@ function commaSeperator(array){
         string = string.replace(/\//g, "&#092;")
         string = string.replace(/$/g, "&#36;")
         return string;
-}*/
+}*/ 
