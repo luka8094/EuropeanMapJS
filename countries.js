@@ -12,7 +12,6 @@ function cache(){
     return{
 
         //Operation to store Country object data
-        //and attach an id onto the object for lookup
         addCountry : country => countries.push(country), 
 
         //Get all (countries) operation, implemented just in case
@@ -62,6 +61,37 @@ function handleSVGTarget(event){
     //get that instead  
     if(localCountryData.findByInitials(_id+"")) return refreshInfobox(_id+"")
     else fetchSingleCountryData(_id,options)
+    
+}
+
+function handleInfoboxResize(){
+
+    const infobox = document.getElementById("infobox")
+
+    //if(infobox.classList.contains("country-info-box-resize")) infobox.classList.remove("country-info-box-resize")
+
+    //if(infobox.classList.contains("country-info-box-resize")) console.log(infobox.className = "country-info-box")
+
+    console.log(infobox.style.height)
+
+    //infobox.style.height = "200px"
+
+    console.log("reached function")
+    console.log("Bounding box rectangle height: "+infobox.getBoundingClientRect().height+"px")
+    console.log("Computed style height: "+document.defaultView.getComputedStyle(infobox).height)
+    console.log("OffsetHeight: "+infobox.offsetHeight)
+    console.log("ScrollHeight: "+infobox.scrollHeight)
+
+    //console.log(document.getElementsByClassName("country-info-box-resize").height)
+
+    let sheet = document.styleSheets[0]
+    //console.log(sheet)
+    //console.log(sheet.insertRule(".toggle-height{ height:"+document.defaultView.getComputedStyle(infobox).height+"; }",0))
+    //console.log(sheet.addRule(".toggle-height{ height:"+document.defaultView.getComputedStyle(infobox).height+"; }",0))
+    //console.log(document.styleSheets.cssRules)
+
+    let newHeight = document.defaultView.getComputedStyle(infobox).height
+    //setTimeout( () => { if(newHeight >= "214.6px") infobox.className += " country-info-box-resize" }, 500)
     
 }
 
@@ -135,24 +165,40 @@ function refreshInfobox(id){
 
     let country = localCountryData.findByInitials(id+"")
 
+    console.log(document.getElementsByClassName("country-info-box")[0].classList)
+
+    if(document.getElementsByClassName("country-info-box")[0].classList.contains("country-info-box", "country-info-box-resize-height")){
+        document.getElementsByClassName("country-info-box")[0].className = "country-info-box"    
+    }
+    
+    setTimeout( () => {}, 500)
+
+    console.log(document.getElementsByClassName("country-info-box")[0].classList)
+
     //Console print out purely for checking purposes
     console.log(country)
 
     //Variable to construct a HTML element 
     //with the data found in the country object
+    //Adding ids to the tags just in case
     let countryInformation = 
     `<img id="country-flag" class="country-flag-img" src=${country.flag}>
-    <p id="country-name">Country: ${country.name} </p>
-    <p id="country-un">UN member: ${country.UnMember}</p>
-    <p id="country-currency">Currency: ${getProperties(country.currencies)['name']}${getProperties(country.currencies)['symbol'] ? ","+ getProperties(country.currencies)['symbol'] : ""}</p>
-    <p id="country-capital">Capital: ${country.capital}</p>
-    <p id="country-language">Languages: ${getProperties(country.language)}</p>
-    <p id="country-borders">Borders: ${commaSeperator(country.borders) ? commaSeperator(country.borders) : "none"}</p>`
+    <p id="country-name"><span id="info-attribute">Country:</span> ${country.name} </p>
+    <p id="country-un"><span id="info-attribute">UN member:</span> ${country.UnMember}</p>
+    <p id="country-currency"><span id="info-attribute">Currency:</span> ${getProperties(country.currencies)['name']}${getProperties(country.currencies)['symbol'] ? " "+ getProperties(country.currencies)['symbol'] : ""}</p>
+    <p id="country-capital"><span id="info-attribute">Capital:</span> ${country.capital}</p>
+    <p id="country-language"><span id="info-attribute">Languages:</span> ${getProperties(country.language)}</p>
+    <p id="country-borders"><span id="info-attribute">Borders:</span> ${commaSeperator(country.borders) ? commaSeperator(country.borders) : "none"}</p>`
 
     document.getElementById("infobox").innerHTML = countryInformation.toString()
 
+    console.log(document.getElementById("infobox").offsetHeight)
+
     setTimeout(() => { 
+        //handleInfoboxResize()
         document.getElementById("country-flag").className += " flag-visible"
+        //if(document.getElementById("infobox").clientHeight)
+        document.getElementsByClassName("country-info-box")[0].className += " country-info-box-resize-height" 
      }, 500);
 }
 
@@ -169,13 +215,13 @@ function getProperties(object){
     //If there is only 1 key present, return the object attached of that key
     if(localKeys.length == 1){  return object[localKeys[0]] }
 
-    //If there the keyset is higher than 1..
+    //If there the keyset is larger than 1..
     if(localKeys.length > 1){
         let obj = []
         count = 0
 
-        //..assign the corresponding values into an array, and return its values
-        //in form of an array
+        //..assign the corresponding values into an array, and return the values
+        //in the form of an array
         while(count < localKeys.length){
             obj.push(object[localKeys[count]])
             count++

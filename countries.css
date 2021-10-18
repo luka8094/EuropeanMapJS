@@ -31,7 +31,7 @@ body{
 .map-container{
     display: flex;
     flex-direction: row;
-    width: fit-content;
+    width: 80vw;
     height: fit-content;
     align-items: center;
     /*border: .1em dashed gray;*/
@@ -53,8 +53,8 @@ body{
 .country-info-box{
     display: flex;
     width: 250px;
-    min-height: 200px;
-    height: fit-content;
+    height: 200px;
+    /*height: 200px;*/
     border: 0.1em solid lightblue;
     flex-direction: column;
     padding: 20px;
@@ -63,12 +63,22 @@ body{
     overflow-wrap: anywhere;
     justify-content: center;
     /*TODO: make the country info box seemlessly scale based on content*/
-    transition: height 2s, color 1s ease-in-out;
+    transition: height 2.1s,
+    opacity 1.3s ease-in;
+    opacity: 0;
+    /*will-change: contents;*/
+   
 }
 
-.country-info-box-height-fit{
-    height: fit-content;
+.country-info-box-resize-height{
+    height: 214.6px;
+    opacity: 1;
 }
+
+/*.country-info-box-resize-standard{
+    height: 200px;
+    opacity: 1;
+}*/
 
 #layer2{
     display: flex;
@@ -89,6 +99,22 @@ body{
 
 #country-name{
     padding-top: 10px;
+}
+
+#info-attribute{
+    font-size: 1em;
+    font-weight: bold;
+}
+
+@keyframes boxresizing{
+
+    from{
+        min-height: 200px;
+    }
+    to{
+        min-height: fit-content;
+    }
+
 }
 
 @media screen and (max-width: 550px){
@@ -117,7 +143,7 @@ body{
 
 }
 
-@media screen and (max-width: 990px){
+@media screen and (max-width: 999px){
 
     .map-container{
         width: 90%;
@@ -137,7 +163,7 @@ body{
 @media screen and (min-width: 1200px){
 
     .map-container{
-        width: 80%;
+        width: 70%;
     }
 
 }
@@ -145,6 +171,13 @@ body{
 @media screen and (min-width: 1500px){
 
     .map-container {
-        width: 50%;
+        width: 60%;
+    }
+}
+
+@media screen and (min-width: 1900px){
+
+    .map-container {
+        width: 70%;
     }
 }
